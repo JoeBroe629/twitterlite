@@ -30,7 +30,7 @@ const submit = () => {
 </script>
 
 <template>
-    <!-- <div class="h-screen w-screen flex justify-center items-center">
+    <div class="h-screen w-screen flex justify-center items-center">
         
   <form @submit.prevent="submit" class="">
         <p class="mb-2 text-2xl font-extrabold flex justify-center">
@@ -57,8 +57,8 @@ const submit = () => {
     </div>
 
   </form>
-</div> -->
-    <GuestLayout>
+</div>
+    <!-- <GuestLayout>
         <Head title="Log in" />
 
         <div v-if="status" class="mb-4 text-sm font-medium text-green-600">
@@ -124,5 +124,5 @@ const submit = () => {
                 </PrimaryButton>
             </div>
         </form>
-    </GuestLayout>
+    </GuestLayout> -->
 </template>
