@@ -21,13 +21,14 @@ const submit = () => {
 </script>
 
 <template>
-    
+        <!-- register/sign up section -->
 <div class="h-screen w-screen flex justify-center items-center">
         
   <form class="">
         <p class="mb-8 text-2xl font-extrabold flex justify-center">
             Sign up with Email
         </p>
+        <!-- register/sign up fields -->
     <div class="flex gap-4 mb-4">
       <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="firstname" type="text" placeholder="Firstname">
       <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="lastnamee" type="text" placeholder="Surname">
@@ -38,6 +39,7 @@ const submit = () => {
     <div class="mb-12">
       <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="Password">
     </div>
+        <!-- register/sign up buttons -->
     <div class="mb-4 flex justify-center items-center">
       <button class=" w-full rounded-md bg-black px-3 py-4 text-white focus:bg-gray-600 focus:outline-none" type="button">
         Create Account

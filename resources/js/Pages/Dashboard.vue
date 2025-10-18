@@ -4,11 +4,12 @@
 </script>
 
 <template>
-
+        <!-- Dashboard section -->
 <body class="bg-gray-50 min-h-screen">
-  
+            <!-- Navbar/top section -->
   <nav class="bg-gray-50 text-black py-3 px-4 flex items-center justify-between">
     <a class="ml-16 font-bold text-2xl tracking-tight" href="#">MiniTweet</a>
+            <!-- profile photo and logout button upper right -->
     <div class="flex items-center">
       <img class="mr-12 w-10 h-10 rounded-full transition-transform duration-300 hover:scale-110 object-cover"
            src="https://i.pinimg.com/564x/de/0f/3d/de0f3d06d2c6dbf29a888cf78e4c0323.jpg"
@@ -16,8 +17,9 @@
       <div class="mr-2 w-10 h-10 bg-[url('../image/logouticon.png')] bg-no-repeat bg-origin-border bg-contain bg-center"></div>
       <button class="mr-16 text-black">Logout</button>
     </div>
-  </nav>
-
+  </nav>    
+            <!-- dashboard tweeting area -->
+            <!-- profile photo -->
   <div class="flex justify-center py-12 px-4">
     <div class="flex items-start bg-white text-black p-4 rounded-2xl w-full max-w-xl shadow-lg">
       <img
@@ -26,6 +28,7 @@
         alt="Profile">
       <div class="flex flex-col flex-1 mr-4">
     
+            <!-- textarea, post button and characters remaining -->
         <textarea
           class="h-24 bg-gray-100 text-black placeholder-gray-400 p-3 rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
           maxlength="280"

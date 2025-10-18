@@ -30,6 +30,7 @@ const submit = () => {
 </script>
 
 <template>
+        <!-- login section -->
     <div class="h-screen w-screen flex justify-center items-center">
         
   <form @submit.prevent="submit" class="">
@@ -40,6 +41,7 @@ const submit = () => {
             Connect with friends in 20 characters or less
         </p>
     <div class="flex gap-4 mb-4">
+        <!-- login input fields -->
       <InputLabel class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="text" value="Email or Username">
       </InputLabel>
     </div>
@@ -47,6 +49,7 @@ const submit = () => {
       <InputLabel class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" value="Password">
       </InputLabel>
     </div>
+        <!-- login and create account button -->
     <div class="mb-4  justify-center items-center">
          <button class="mb-2 w-full rounded-xl bg-black px-3 py-2 text-white focus:bg-gray-600 focus:shadow-outline" type="button">
         Login
