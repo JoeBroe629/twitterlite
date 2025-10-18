@@ -30,6 +30,34 @@ const submit = () => {
 </script>
 
 <template>
+    <!-- <div class="h-screen w-screen flex justify-center items-center">
+        
+  <form @submit.prevent="submit" class="">
+        <p class="mb-2 text-2xl font-extrabold flex justify-center">
+            Welcome to MiniTweet
+        </p>
+        <p class="mb-4  flex justify-center">
+            Connect with friends in 20 characters or less
+        </p>
+    <div class="flex gap-4 mb-4">
+      <InputLabel class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="text" value="Email or Username">
+      </InputLabel>
+    </div>
+    <div class="mb-12">
+      <InputLabel class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" value="Password">
+      </InputLabel>
+    </div>
+    <div class="mb-4  justify-center items-center">
+         <button class="mb-2 w-full rounded-xl bg-black px-3 py-2 text-white focus:bg-gray-600 focus:shadow-outline" type="button">
+        Login
+        </button>
+      <button class=" w-full rounded-md px-3 py-2 outline-2 outline-offset-2 border rounded-2xl" type="button">
+        Create Account
+      </button>
+    </div>
+
+  </form>
+</div> -->
     <GuestLayout>
         <Head title="Log in" />
 
