@@ -1,6 +1,12 @@
 <script setup>
 // import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
- import { Head, useForm } from '@inertiajs/vue3';
+ import { Head , useForm } from '@inertiajs/vue3';
+
+ const form = useForm({});
+ const logout=()=>{
+  form.post(route('logout'));
+ };
+ 
 </script>
 
 <template>
@@ -15,7 +21,7 @@
            src="https://i.pinimg.com/564x/de/0f/3d/de0f3d06d2c6dbf29a888cf78e4c0323.jpg"
            alt="Profile">
       <div class="mr-2 w-10 h-10 bg-[url('../image/logouticon.png')] bg-no-repeat bg-origin-border bg-contain bg-center"></div>
-      <button class="mr-16 text-black">Logout</button>
+      <button @click="logout" class="mr-16 text-black">Logout</button>
     </div>
   </nav>    
             <!-- dashboard tweeting area -->
