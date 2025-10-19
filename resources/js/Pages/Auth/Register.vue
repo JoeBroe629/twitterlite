@@ -7,16 +7,26 @@ import TextInput from '@/Components/TextInput.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 
 const form = useForm({
-    name: '',
+    firstname: '',
+    surname: '',
     email: '',
     password: '',
-    password_confirmation: '',
 });
 
 const submit = () => {
-    form.post(route('register'), {
-        onFinish: () => form.reset('password', 'password_confirmation'),
-    });
+    form
+        .transform((data) => ({
+            // pass through original fields
+            ...data,
+            // derive a name to satisfy any backend that still validates name
+            name: [data.firstname, data.surname].filter(Boolean).join(' ').trim(),
+        }))
+        .post(route('register'), {
+            onFinish: () => {
+                // reset transform so future submissions use raw data
+                form.transform((d) => d);
+            },
+        });
 };
 </script>
 
@@ -24,33 +34,47 @@ const submit = () => {
         <!-- register/sign up section -->
 <div class="h-screen w-screen flex justify-center items-center">
         
-  <form class="">
+  <form @submit.prevent="submit">
         <p class="mb-8 text-2xl font-extrabold flex justify-center">
             Sign up with Email
         </p>
         <!-- register/sign up fields -->
     <div class="flex gap-4 mb-4">
-      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="firstname" type="text" placeholder="Firstname">
-      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="lastnamee" type="text" placeholder="Surname">
+
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+      v-model="form.firstname" id="firstname" type="text" placeholder="Firstname">
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+      v-model="form.surname" id="surname" type="text" placeholder="Surname">
+
     </div>
     <div class="mb-6">
-      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="text" placeholder="Email Address">
+
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+      v-model="form.email" id="email" type="text" placeholder="Email Address">
+
     </div>
     <div class="mb-12">
-      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="Password">
+
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+      v-model="form.password" id="password" type="password" placeholder="Password">
+
     </div>
         <!-- register/sign up buttons -->
     <div class="mb-4 flex justify-center items-center">
-      <button class=" w-full rounded-md bg-black px-3 py-4 text-white focus:bg-gray-600 focus:outline-none" type="button">
+
+      <button class=" w-full rounded-md bg-black px-3 py-4 text-white focus:bg-gray-600 focus:outline-none" type="submit">
         Create Account
       </button>
+
     </div>
+
     <p class="mb-8 text-sm font-small flex justify-center">
             By signing up, you agree to our Terms & Conditions.
         </p>
-        <p class="text-sm font-small flex justify-center">
-            Have an account already? Log in
+        <p class=" text-sm font-small flex justify-center">
+            Have an account already? <a href="login" class="ml-1">Log in</a>
         </p>
+
   </form>
 </div>
     
