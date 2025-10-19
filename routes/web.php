@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\RegisterController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -26,6 +25,6 @@ Route::middleware('auth')->group(function () {
 });
 
 // Register
-Route::post(uri: '/register', action: [RegisterController::class, 'register']);
+//Route::post(uri: '/register', action: [RegisterController::class, 'register']);
 
 require __DIR__.'/auth.php';

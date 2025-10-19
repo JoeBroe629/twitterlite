@@ -14,19 +14,9 @@ const form = useForm({
 });
 
 const submit = () => {
-    form
-        .transform((data) => ({
-            // pass through original fields
-            ...data,
-            // derive a name to satisfy any backend that still validates name
-            name: [data.firstname, data.surname].filter(Boolean).join(' ').trim(),
-        }))
-        .post(route('register'), {
-            onFinish: () => {
-                // reset transform so future submissions use raw data
-                form.transform((d) => d);
-            },
-        });
+    form.post(route('register'), {
+        onFinish: () => form.reset('password'),
+    });
 };
 </script>
 
