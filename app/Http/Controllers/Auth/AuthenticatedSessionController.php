@@ -18,6 +18,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): Response
     {
+        
         return Inertia::render('Auth/Login', [
             'canResetPassword' => Route::has('password.request'),
             'status' => session('status'),
@@ -29,11 +30,25 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
+    \Log::info('Login attempt received', [
+        'email' => $request->email,
+        'password' => $request->password,
+    ]);
 
-        $request->session()->regenerate();
+    $credentials = $request->only('email', 'password');
 
-        return redirect()->intended(route('dashboard', absolute: false));
+    if (!Auth::attempt($credentials)) {
+        \Log::warning('Login FAILED', $credentials);
+        throw \Illuminate\Validation\ValidationException::withMessages([
+            'email' => __('auth.failed'),
+        ]);
+    }
+
+    \Log::info('Login SUCCESS', ['user_id' => auth()->id()]);
+
+    $request->session()->regenerate();
+
+    return redirect()->intended(route('dashboard', absolute: false));
     }
 
     /**

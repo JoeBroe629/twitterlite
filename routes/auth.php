@@ -33,6 +33,20 @@ Route::middleware('guest')->group(function () {
 
     Route::post('reset-password', [NewPasswordController::class, 'store'])
         ->name('password.store');
+        Route::get('/test-login', function () {
+    $user = \App\Models\User::where('email', 'bomberjosh143@gmail.com')->first();
+    if (\Illuminate\Support\Facades\Hash::check('12345678', $user->password)) {
+        return 'Password match ✅';
+    } else {
+        return 'Password mismatch ❌';
+    }
+});
+Route::get('/who', function () {
+    return response()->json([
+        'user' => auth()->user(),
+        'id' => auth()->id(),
+    ]);
+});
 });
 
 Route::middleware('auth')->group(function () {

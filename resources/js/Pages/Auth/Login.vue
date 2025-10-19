@@ -19,11 +19,14 @@ defineProps({
 const form = useForm({
     email: '',
     password: '',
-    remember: false,
 });
 
 const submit = () => {
+    console.log(form.email, form.password),
     form.post(route('login'), {
+        onSuccess: () => {
+            window.location = route('dashboard'); // manually navigate after successful login
+        },
         onFinish: () => form.reset('password'),
     });
 };
@@ -42,16 +45,18 @@ const submit = () => {
         </p>
     <div class="flex gap-4 mb-4">
         <!-- login input fields -->
-      <InputLabel class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="text" value="Email or Username">
-      </InputLabel>
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+      v-model="form.email" id="email" type="text" placeholder="Email or Username"> 
+      </input>
     </div>
     <div class="mb-12">
-      <InputLabel class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" value="Password">
-      </InputLabel>
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+      v-model="form.password" id="password" type="password" placeholder="Password">
+      </input>
     </div>
         <!-- login and create account button -->
     <div class="mb-4  justify-center items-center">
-         <button class="mb-2 w-full rounded-xl bg-black px-3 py-2 text-white focus:bg-gray-600 focus:shadow-outline" type="button">
+         <button class="mb-2 w-full rounded-xl bg-black px-3 py-2 text-white focus:bg-gray-600 focus:shadow-outline" type="submit">
         Login
         </button>
       <button class=" w-full rounded-md px-3 py-2 outline-2 outline-offset-2 border rounded-2xl" type="button">
