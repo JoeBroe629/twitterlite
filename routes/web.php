@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\LikeController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -27,7 +28,9 @@ use Inertia\Inertia;
 
     Route::get('/dashboard', [PostController::class, 'index'])->name('dashboard');
     Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
-// Register
+
+    Route::post('/posts/{id_post}/like', [LikeController::class, 'toggle'])->name('posts.like');
+    // Register
 //Route::post(uri: '/register', action: [RegisterController::class, 'register']);
 
 require __DIR__.'/auth.php';

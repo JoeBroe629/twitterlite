@@ -1,6 +1,6 @@
 <script setup>
 // import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
- import { Head , useForm } from '@inertiajs/vue3';
+ import { Head , useForm , router } from '@inertiajs/vue3';
  import { defineProps } from 'vue';
 
  const form = useForm({
@@ -21,6 +21,16 @@
 const props = defineProps({
   posts: Array,
 });
+
+const toggleLike = async (post) => {
+  try {
+    const response = await axios.post(route('posts.like', post.id_post));
+    post.likes_count = response.data.likes_count;
+    post.liked_by_user = response.data.status === 'liked';
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 </script>
 
@@ -64,6 +74,7 @@ const props = defineProps({
         {{ 280 - form.postcontent.length }} characters remaining
       </p>
       <button
+       @click="toggleLike(post)"
         type="submit"
         :disabled="form.processing"
         class="rounded-md bg-black px-4 py-2 text-white font-semibold hover:bg-gray-700 focus:outline-none disabled:opacity-50"
@@ -93,7 +104,15 @@ const props = defineProps({
             <p class="font-bold">{{ post.user.firstname }} {{ post.user.lastname }}</p>
           </div>
           <p class="text-gray-800 mt-1 whitespace-pre-wrap">{{ post.postcontent }}</p>
-          <p class="text-sm text-gray-500 mt-2">❤️ 0 Likes</p>
+          <div class="flex items-center mt-2 space-x-2">
+          <button
+           @click="toggleLike(post)"
+            class="text-sm text-gray-500 mt-2">
+            <span v-if="post.liked_by_user">❤️</span>
+            <span v-else>🤍</span>
+            <span>{{ post.likes_count }}</span>
+          </button>
+          </div>
         </div>
       </div>
     </div>
