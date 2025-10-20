@@ -14,6 +14,6 @@ class Like extends Model
     }
 
     public function post() {
-        return $this->belongsTo(Post::class, 'id_post', 'id_post');
+        return $this->belongsTo(Posts::class, 'id_post', 'id_post');
     }
 }

@@ -35,6 +35,22 @@ const toggleLike = async (post) => {
     console.error('Error liking post:', error)
   }
 }
+
+//calculate time elapsed since posting of tweet
+function timeAgo(dateString) {
+  const date = new Date(dateString)
+  const now = new Date()
+  const diff = Math.floor((now - date) / 1000)
+
+  const minutes = Math.floor(diff / 60)
+  const hours = Math.floor(minutes / 60)
+  const days = Math.floor(hours / 24)
+
+  if (diff < 60) return `${diff} second${diff !== 1 ? 's' : ''} ago`
+  if (minutes < 60) return `${minutes} minute${minutes !== 1 ? 's' : ''} ago`
+  if (hours < 24) return `${hours} hour${hours !== 1 ? 's' : ''} ago`
+  return `${days} day${days !== 1 ? 's' : ''} ago`
+}
 </script>
 
 <template>
@@ -94,35 +110,44 @@ const toggleLike = async (post) => {
     </div>
   </div>
 
-  <div class="flex flex-col items-center space-y-6 px-4">
-    <!-- feed/tweets from other users -->
-      <div
-        v-for="post in posts"
-        :key="post.id_post"
-        class="flex items-start bg-white text-black p-4 rounded-2xl w-full max-w-xl"
-      >
-        <img
-          class="mr-4 ml-2 w-12 h-12 rounded-full object-cover"
-          src="https://i.pinimg.com/564x/de/0f/3d/de0f3d06d2c6dbf29a888cf78e4c0323.jpg"
-          alt="Profile"
-        />
-        <div class="flex flex-col flex-1">
-          <div class="flex items-center space-x-2">
-            <p class="font-body font-semibold">{{ post.user.firstname }} {{ post.user.lastname }}</p>
-          </div>
-          <p class="font-body text-gray-800 mt-1 whitespace-pre-wrap">{{ post.postcontent }}</p>
-          <div class="flex items-center mt-2 space-x-2">
-          <button
-           @click="toggleLike(post)"
-            class="text-sm font-body text-gray-500 mt-2">
-            <span v-if="post.liked_by_user" class="mr-3">❤️</span>
-            <span v-else class="mr-3">🤍</span>
-            <span>{{ post.likes_count }}</span>
-          </button>
-          </div>
-        </div>
+<div class="flex flex-col items-center space-y-6 px-4">
+  <!-- feed/tweets from other users -->
+  <div
+    v-for="post in posts"
+    :key="post.id_post"
+    class="flex items-start bg-white text-black p-4 rounded-2xl w-full max-w-xl"
+  >
+    <!-- Profile picture -->
+    <img
+      class="mr-4 ml-2 w-12 h-12 rounded-full object-cover"
+      src="https://i.pinimg.com/564x/de/0f/3d/de0f3d06d2c6dbf29a888cf78e4c0323.jpg"
+      alt="Profile"
+    />
+
+    <!-- Post info -->
+    <div class="flex flex-col flex-1">
+      <div>
+        <p class="font-body font-semibold">{{ post.user.firstname }} {{ post.user.lastname }}</p>
+        <p class="text-sm text-gray-500">{{ timeAgo(post.date_posted) }}</p>
+      </div>
+
+      <!-- Post content -->
+      <p class="font-body text-gray-800 mt-2 whitespace-pre-wrap">{{ post.postcontent }}</p>
+
+      <!-- Like button -->
+      <div class="flex items-center mt-2 space-x-2">
+        <button
+          @click="toggleLike(post)"
+          class="text-sm font-body text-gray-500 mt-2"
+        >
+          <span v-if="post.liked_by_user" class="mr-2">❤️</span>
+          <span v-else class="mr-2">🤍</span>
+          <span>{{ post.likes_count }}</span>
+        </button>
       </div>
     </div>
+  </div>
+</div>
 </body>
 
 </template>
