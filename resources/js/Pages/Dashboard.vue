@@ -15,8 +15,12 @@ const logout = () => {
 
 //submit tweet to db
 const submitPost = () => {
-  form.post(route('posts.store'), {
-    onSuccess: () => form.reset('postcontent'),
+    if (form.postcontent.length == 0){
+      alert("There's nothing to tweet"); return}
+
+    form.post(route('posts.store'), {
+      onSuccess: () =>{form.reset('postcontent')
+      alert("Tweeted successfully")},
   })
 }
 
@@ -51,6 +55,7 @@ function timeAgo(dateString) {
   if (hours < 24) return `${hours} hour${hours !== 1 ? 's' : ''} ago`
   return `${days} day${days !== 1 ? 's' : ''} ago`
 }
+
 </script>
 
 <template>
@@ -71,7 +76,7 @@ function timeAgo(dateString) {
             <!-- dashboard tweeting area -->
             <!-- profile photo -->
   <div class="flex justify-center py-12 px-4">
-    <div class="flex items-start bg-white text-black  p-4 rounded-2xl w-full max-w-xl">
+    <div class="border border-gray-200 flex items-start bg-white text-black  p-4 rounded-2xl w-full max-w-xl">
       <img
         class="mr-4 ml-2 w-11 h-11 rounded-full object-cover transition-transform duration-300 hover:scale-110"
         src="https://i.pinimg.com/564x/de/0f/3d/de0f3d06d2c6dbf29a888cf78e4c0323.jpg"
@@ -80,7 +85,7 @@ function timeAgo(dateString) {
     
             <!-- textarea, post button and characters remaining -->
         <form class="w-full" @submit.prevent="submitPost">
-  <div class="flex flex-col w-full">
+  <div class=" flex flex-col w-full">
     <textarea
       class="w-full h-24 bg-gray-200 text-black font-body placeholder-gray-400 p-3 rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
       v-model="form.postcontent"
@@ -88,9 +93,9 @@ function timeAgo(dateString) {
       placeholder="What's happening?"
     ></textarea>
 
-    <div class="flex  justify-between items-center mt-2">
+    <div class="flex justify-between items-center mt-2">
       <p class="text-sm font-body text-gray-500">
-        {{ 280 - form.postcontent.length }} characters remaining
+        {{ 280 - form.postcontent.length }} characters remaining 
       </p>
       <button
           @click="toggleLike(post)"
@@ -113,9 +118,9 @@ function timeAgo(dateString) {
 <div class="flex flex-col items-center space-y-6 px-4">
   <!-- feed/tweets from other users -->
   <div
-    v-for="post in posts"
+    v-for="post in [...posts].sort((a, b) => new Date(b.date_posted) - new Date(a.date_posted))"
     :key="post.id_post"
-    class="flex items-start bg-white text-black p-4 rounded-2xl w-full max-w-xl"
+    class="flex items-start border border-gray-200 bg-white text-black p-4 rounded-2xl w-full max-w-xl"
   >
     <!-- Profile picture -->
     <img
