@@ -1,5 +1,4 @@
 <script setup>
-// import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, useForm, router } from '@inertiajs/vue3'
 import { defineProps } from 'vue'
 import axios from 'axios'
@@ -117,49 +116,4 @@ const toggleLike = async (post) => {
     </div>
 </body>
 
-     <!-- <nav class="flex items-center justify-between bg-black"> 
-        
-        <div class=" flex px-4 py-2 flex items-center h-16">
-            <div class="text-xl flex items-center font-bold text-blue-900">
-               MiniTweet
-               <div class="flex  bg-white space-x-2" >
-                <img class="w-10 h-10 rounded-full transition-transform duration-300 hover:scale-110 object-cover" 
-                     src="https://i.pinimg.com/564x/de/0f/3d/de0f3d06d2c6dbf29a888cf78e4c0323.jpg" 
-                     alt="Profile"> </img>
-                     <div class=" w-10 h-10 bg-[url('../image/logouticon.png')] bg-no-repeat bg-origin-border bg-contain bg-center">
-                        </div>
-                     
-            </div>
-            
-            </div>
-            <button class="flex text-white mr-auto">
-                        Logout
-                     </button>
-                     
-            
-            
-        </div>
-    </nav> -->
-
-    <!-- <AuthenticatedLayout>
-        <template #header>
-            <h2
-                class="text-xl font-semibold leading-tight text-gray-800"
-            >
-                Dashboard
-            </h2>
-        </template> -->
-
-        <!-- <div class="py-12">
-            <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                <div
-                    class="overflow-hidden bg-white shadow-sm sm:rounded-lg"
-                >
-                    <div class="p-6 text-gray-900">
-                        You're logged in!
-                    </div>
-                </div>
-            </div>
-        </div> -->
-    <!-- </AuthenticatedLayout> -->
 </template>
