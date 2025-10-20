@@ -2,6 +2,7 @@
 
 import { Head, Link, useForm } from '@inertiajs/vue3';
 
+//initialize reactive form for the registration
 const form = useForm({
     firstname: '',
     surname: '',
@@ -9,6 +10,7 @@ const form = useForm({
     password: '',
 });
 
+//submit the form containing the data for registering a new user
 const submit = () => {
     form.post(route('register'), {
         onFinish: () => form.reset('password'),

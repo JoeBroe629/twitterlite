@@ -3,24 +3,29 @@ import { Head, useForm, router } from '@inertiajs/vue3'
 import { defineProps } from 'vue'
 import axios from 'axios'
 
+//initialize reactive form for tweet content
 const form = useForm({
   postcontent: '',
 })
 
+//logout 
 const logout = () => {
   form.post(route('logout'))
 }
 
+//submit tweet to db
 const submitPost = () => {
   form.post(route('posts.store'), {
     onSuccess: () => form.reset('postcontent'),
   })
 }
 
+//props to display an array of postcontent data
 const props = defineProps({
   posts: Array,
 })
 
+//realtime data for liking/unliking
 const toggleLike = async (post) => {
   try {
     await axios.post(`/posts/${post.id_post}/like`)
@@ -71,12 +76,8 @@ const toggleLike = async (post) => {
       <p class="text-sm text-gray-500">
         {{ 280 - form.postcontent.length }} characters remaining
       </p>
-      <button
-       @click="toggleLike(post)"
-        type="submit"
-        :disabled="form.processing"
-        class="rounded-md bg-black px-4 py-2 text-white font-semibold hover:bg-gray-700 focus:outline-none disabled:opacity-50"
-      >
+      <button @click="toggleLike(post)" type="submit" :disabled="form.processing"
+        class="rounded-md bg-black px-4 py-2 text-white font-semibold hover:bg-gray-700 focus:outline-none disabled:opacity-50">
         Tweet
       </button>
     </div>
@@ -87,6 +88,7 @@ const toggleLike = async (post) => {
   </div>
 
   <div class="flex flex-col items-center space-y-6 px-4">
+    <!-- feed/tweets from other users -->
       <div
         v-for="post in posts"
         :key="post.id_post"
