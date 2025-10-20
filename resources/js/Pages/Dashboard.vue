@@ -61,10 +61,10 @@ function timeAgo(dateString) {
     <a class="ml-16 font-bold font-body text-2xl tracking-tight" href="#">MiniTweet</a>
             <!-- profile photo and logout button upper right -->
     <div class="flex items-center">
-      <img class="mr-12 w-10 h-10 rounded-full transition-transform duration-300 hover:scale-110 object-cover"
+      <img class="mr-12 w-9 h-9 rounded-full transition-transform duration-300 hover:scale-110 object-cover"
            src="https://i.pinimg.com/564x/de/0f/3d/de0f3d06d2c6dbf29a888cf78e4c0323.jpg"
            alt="Profile">
-      <div class="mr-2 w-10 h-10 bg-[url('../image/logouticon.png')] bg-no-repeat bg-origin-border bg-contain bg-center"></div>
+      <div class="mr-2 w-6 h-6 bg-[url('../image/logouticon.png')] bg-no-repeat bg-origin-border bg-contain bg-center"></div>
       <button @click="logout" class="mr-16 font-body text-black">Logout</button>
     </div>
   </nav>    
@@ -73,7 +73,7 @@ function timeAgo(dateString) {
   <div class="flex justify-center py-12 px-4">
     <div class="flex items-start bg-white text-black  p-4 rounded-2xl w-full max-w-xl">
       <img
-        class="mr-4 ml-2 w-12 h-12 rounded-full object-cover transition-transform duration-300 hover:scale-110"
+        class="mr-4 ml-2 w-11 h-11 rounded-full object-cover transition-transform duration-300 hover:scale-110"
         src="https://i.pinimg.com/564x/de/0f/3d/de0f3d06d2c6dbf29a888cf78e4c0323.jpg"
         alt="Profile">
       <div class="flex flex-col flex-1 mr-4">
@@ -82,7 +82,7 @@ function timeAgo(dateString) {
         <form class="w-full" @submit.prevent="submitPost">
   <div class="flex flex-col w-full">
     <textarea
-      class="w-full h-24 bg-gray-100 text-black font-body placeholder-gray-400 p-3 rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+      class="w-full h-24 bg-gray-200 text-black font-body placeholder-gray-400 p-3 rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
       v-model="form.postcontent"
       maxlength="280"
       placeholder="What's happening?"
@@ -119,7 +119,7 @@ function timeAgo(dateString) {
   >
     <!-- Profile picture -->
     <img
-      class="mr-4 ml-2 w-12 h-12 rounded-full object-cover"
+      class="mr-4 ml-2 w-11 h-11 rounded-full object-cover"
       src="https://i.pinimg.com/564x/de/0f/3d/de0f3d06d2c6dbf29a888cf78e4c0323.jpg"
       alt="Profile"
     />
