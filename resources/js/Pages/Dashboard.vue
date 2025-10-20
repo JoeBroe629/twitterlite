@@ -1,12 +1,27 @@
 <script setup>
 // import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
  import { Head , useForm } from '@inertiajs/vue3';
+ import { defineProps } from 'vue';
 
- const form = useForm({});
+ const form = useForm({
+  postcontent: '',
+ }); 
  const logout=()=>{
   form.post(route('logout'));
  };
- 
+
+ const submitPost = () => {
+  form.post(route('posts.store'), {
+    onSuccess: () => {
+      form.reset('postcontent');
+    },
+  });
+};
+
+const props = defineProps({
+  posts: Array,
+});
+
 </script>
 
 <template>
@@ -35,21 +50,53 @@
       <div class="flex flex-col flex-1 mr-4">
     
             <!-- textarea, post button and characters remaining -->
-        <textarea
-          class="h-24 bg-gray-100 text-black placeholder-gray-400 p-3 rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
-          maxlength="280"
-          placeholder="What's happening?"
-        ></textarea>
+        <form class="w-full" @submit.prevent="submitPost">
+  <div class="flex flex-col w-full">
+    <textarea
+      class="w-full h-24 bg-gray-100 text-black placeholder-gray-400 p-3 rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+      v-model="form.postcontent"
+      maxlength="280"
+      placeholder="What's happening?"
+    ></textarea>
 
-        <div class="flex justify-between items-center mt-2">
-          <p class="text-sm text-gray-500">Characters remaining</p>
-          <button class="rounded-md bg-black px-4 py-2 text-white font-semibold hover:bg-gray-700 focus:outline-none">
-            > Tweet
-          </button>
-        </div>
+    <div class="flex justify-between items-center mt-2">
+      <p class="text-sm text-gray-500">
+        {{ 280 - form.postcontent.length }} characters remaining
+      </p>
+      <button
+        type="submit"
+        :disabled="form.processing"
+        class="rounded-md bg-black px-4 py-2 text-white font-semibold hover:bg-gray-700 focus:outline-none disabled:opacity-50"
+      >
+        Tweet
+      </button>
+    </div>
+  </div>
+</form>
       </div>
     </div>
   </div>
+
+  <div class="flex flex-col items-center space-y-6 px-4">
+      <div
+        v-for="post in posts"
+        :key="post.id_post"
+        class="flex items-start bg-white text-black p-4 rounded-2xl w-full max-w-xl shadow-md"
+      >
+        <img
+          class="mr-4 ml-2 w-12 h-12 rounded-full object-cover"
+          src="https://i.pinimg.com/564x/de/0f/3d/de0f3d06d2c6dbf29a888cf78e4c0323.jpg"
+          alt="Profile"
+        />
+        <div class="flex flex-col flex-1">
+          <div class="flex items-center space-x-2">
+            <p class="font-bold">{{ post.user.firstname }} {{ post.user.lastname }}</p>
+          </div>
+          <p class="text-gray-800 mt-1 whitespace-pre-wrap">{{ post.postcontent }}</p>
+          <p class="text-sm text-gray-500 mt-2">❤️ 0 Likes</p>
+        </div>
+      </div>
+    </div>
 </body>
 
      <!-- <nav class="flex items-center justify-between bg-black"> 
