@@ -2,7 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Like;
-use App\Models\Post;
+use App\Models\Posts;
 use Illuminate\Http\Request;
 
 class LikeController extends Controller
@@ -30,7 +30,7 @@ class LikeController extends Controller
 
         return response()->json([
             'status' => $status,
-            'likes_count' => Post::find($id_post)->likes()->count(),
+            'likes_count' => Posts::find($id_post)->likes()->count(),
         ]);
     }
 }

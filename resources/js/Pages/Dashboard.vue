@@ -1,37 +1,36 @@
 <script setup>
 // import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
- import { Head , useForm , router } from '@inertiajs/vue3';
- import { defineProps } from 'vue';
+import { Head, useForm, router } from '@inertiajs/vue3'
+import { defineProps } from 'vue'
+import axios from 'axios'
 
- const form = useForm({
+const form = useForm({
   postcontent: '',
- }); 
- const logout=()=>{
-  form.post(route('logout'));
- };
+})
 
- const submitPost = () => {
+const logout = () => {
+  form.post(route('logout'))
+}
+
+const submitPost = () => {
   form.post(route('posts.store'), {
-    onSuccess: () => {
-      form.reset('postcontent');
-    },
-  });
-};
+    onSuccess: () => form.reset('postcontent'),
+  })
+}
 
 const props = defineProps({
   posts: Array,
-});
+})
 
 const toggleLike = async (post) => {
   try {
-    const response = await axios.post(route('posts.like', post.id_post));
-    post.likes_count = response.data.likes_count;
-    post.liked_by_user = response.data.status === 'liked';
+    await axios.post(`/posts/${post.id_post}/like`)
+    // Refresh only the 'posts' data from the backend
+    router.reload({ only: ['posts'] })
   } catch (error) {
-    console.error(error);
+    console.error('Error liking post:', error)
   }
-};
-
+}
 </script>
 
 <template>
