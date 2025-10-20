@@ -32,14 +32,16 @@ class PostController extends Controller
         return [
             'id_post' => $post->id_post,
             'postcontent' => $post->postcontent,
-            'date_created' => $post->date_created,
+            'date_posted' => $post->date_posted,
             'user' => $post->user,
             'likes_count' => $post->likes->count(),
             'liked_by_user' => $post->likes->contains('id_user', $userId),
         ];
     });
         return inertia('Dashboard', [
+            logger($posts->all()),
             'posts' => $posts,
+            
         ]);
     }
 }
