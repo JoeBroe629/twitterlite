@@ -23,44 +23,44 @@ const submit = () => {
 <div class="h-screen w-screen flex justify-center items-center">
         
   <form @submit.prevent="submit">
-        <p class="mb-8 text-2xl font-extrabold flex justify-center">
+        <p class="mb-8 font-body text-2xl font-bold flex justify-center">
             Sign up with Email
         </p>
         <!-- register/sign up fields -->
-    <div class="flex gap-4 mb-4">
+    <div class="flex gap-4 mb-5">
 
-      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+      <input class="font-body appearance-none border-none rounded-xl w-full py-4 px-3 text-gray-700 bg-gray-200 leading-tight focus:outline-none focus:shadow-outline" 
       v-model="form.firstname" id="firstname" type="text" placeholder="Firstname">
-      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+      <input class="font-body appearance-none border-none rounded-xl w-full py-4 px-3 text-gray-700 bg-gray-200 leading-tight focus:outline-none focus:shadow-outline" 
       v-model="form.surname" id="surname" type="text" placeholder="Surname">
 
     </div>
-    <div class="mb-6">
+    <div class="mb-5">
 
-      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+      <input class="font-body  appearance-none border-none rounded-xl w-full py-4 px-3 text-gray-700 bg-gray-200 leading-tight focus:outline-none focus:shadow-outline" 
       v-model="form.email" id="email" type="text" placeholder="Email Address">
 
     </div>
     <div class="mb-12">
 
-      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+      <input class="font-body  appearance-none border-none rounded-xl w-full py-4 px-3 text-gray-700 bg-gray-200 leading-tight focus:outline-none focus:shadow-outline" 
       v-model="form.password" id="password" type="password" placeholder="Password">
 
     </div>
         <!-- register/sign up buttons -->
-    <div class="mb-4 flex justify-center items-center">
+    <div class="font-body mb-4 flex justify-center items-center">
 
-      <button class=" w-full rounded-md bg-black px-3 py-4 text-white focus:bg-gray-600 focus:outline-none" type="submit">
+      <button class="font-body w-full rounded-xl bg-black px-3 py-4 text-white focus:bg-gray-600  focus:outline-none" type="submit">
         Create Account
       </button>
 
     </div>
 
-    <p class="mb-8 text-sm font-small flex justify-center">
+    <p class="font-body mb-8 text-gray-600 text-sm font-small flex justify-center">
             By signing up, you agree to our Terms & Conditions.
         </p>
-        <p class=" text-sm font-small flex justify-center">
-            Have an account already? <a href="login" class="ml-1">Log in</a>
+        <p class="font-body text-gray-600 text-sm font-small flex justify-center">
+            Have an account already? <a href="login" class="ml-1 text-black">Log in</a>
         </p>
 
   </form>

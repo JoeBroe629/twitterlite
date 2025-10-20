@@ -41,21 +41,21 @@ const submit = () => {
         </p>
     <div class="flex gap-4 mb-4">
         <!-- login input fields -->
-      <input class="font-body bg-gray-200 appearance-none border-none rounded-xl w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+      <input class="font-body bg-gray-200 appearance-none border-none rounded-xl w-full py-4 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
       v-model="form.email" id="email" type="text" placeholder="Email or Username"> 
       </input>
     </div>
     <div class="mb-10">
-      <input class="font-body bg-gray-200 appearance-none border-none rounded-xl w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+      <input class="font-body bg-gray-200 appearance-none border-none rounded-xl w-full py-4 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
       v-model="form.password" id="password" type="password" placeholder="Password">
       </input>
     </div>
         <!-- login and create account button -->
     <div class="mb-4  justify-center items-center">
-         <button class="font-body mb-3 w-full rounded-xl bg-[#121419] px-3 py-2 text-white focus:bg-gray-600 focus:shadow-outline" type="submit">
+         <button class="font-body mb-3 w-full rounded-xl bg-[#121419] px-3 py-3 text-white focus:bg-gray-600 focus:shadow-outline" type="submit">
         Log in
         </button>
-      <button class="font-body w-full rounded-xl px-3 py-2 outline-3 outline-offset-2 border rounded-xl" type="button">
+      <button class="font-body w-full rounded-xl px-3 py-3 outline-3 outline-offset-2 border rounded-xl" type="button">
         <a href="register">Create Account</a>
       </button>
     </div>
